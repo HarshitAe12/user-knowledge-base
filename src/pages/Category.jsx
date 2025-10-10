@@ -38,6 +38,7 @@ const Category = () => {
                     <div className="space-y-6">
                         {posts?.length>0 ? posts?.map((article, idx) => (
                             <Link
+                            className='flex gap-4 items-center group'
                                 to={`/category/${id}/${name}/${article.id}/${article.title.replace(/\s+/g, '-').toLowerCase(
                                 )}`}
                             >
