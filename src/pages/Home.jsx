@@ -3,7 +3,7 @@ import ArticlesSection from '../components/Articles';
 import { fetchCategories, fetchAllPosts, fetchPostsBySearch } from '../services/api.js';
 import React, { useEffect, useState } from 'react';
 import { IoSearchSharp } from "react-icons/io5";
-
+import './home.css'
 import icon1 from "../assets/categoryIcons/1.png";
 import icon2 from "../assets/categoryIcons/2.png";
 import icon3 from "../assets/categoryIcons/3.png";
@@ -70,74 +70,51 @@ const Home = () => {
   };
 
   return (
-    <div className="min-h-screen ">
+      <div className="help-center">
       {/* Hero Section */}
-      <section className="bg-[#1a3940] text-white pt-24 pb-24 md:pb-36 px-6 flex flex-col items-center">
-        <h1 className="text-2xl md:text-5xl font-bold mb-6 text-center">
-          Hi, how can we help you?
-        </h1>
+      <section className="hero-section-center">
+        <h1 className="hero-title">Hi, how can we help you?</h1>
 
         {/* Search Bar */}
-        <div className="w-full max-w-sm sm:max-w-xl">
-          <div className="flex">
+        <div className="search-container">
+          <div className="search-bar">
             <input
               type="text"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               placeholder="Search..."
-              className="flex-grow px-3 py-2 text-sm sm:px-4 sm:py-3 sm:text-base bg-white rounded-l-lg border focus:outline-none focus:ring-2 focus:ring-[#1A2C40] text-black"
-              onKeyDown={(e) => e.key === 'Enter' && handleSearch()} // search on Enter
+              onKeyDown={(e) => e.key === "Enter" && handleSearch()}
             />
-            <button
-              onClick={handleSearch}
-              className="cursor-pointer bg-white text-[#1A2C40] px-4 sm:px-6 py-2 sm:py-3 rounded-r-lg font-semibold hover:bg-gray-100 transition flex items-center justify-center"
-            >
-              <IoSearchSharp className="text-lg sm:text-2xl" />
+            <button onClick={handleSearch}>
+              <IoSearchSharp className="search-icon" />
             </button>
           </div>
         </div>
       </section>
 
       {/* Category Cards Section */}
-    <section className="relative -mt-[6%] md:-mt-[3%] px-6">
-      <div className="max-w-6xl mx-auto space-y-6">
-        {/* First row: 5 cards */}
-        <div className="grid gap-6 grid-cols-1 sm:grid-cols-5">
+      <section className="category-section">
+        <div className="category-grid five-cols">
           {cat?.slice(0, 5).map((e, index) => (
-            <Link
-              to={`/category/${e?.id}/${encodeURIComponent(e?.name)}`}
-              key={index}
-              className="bg-white cursor-pointer rounded-xl p-8 flex flex-col items-center text-center shadow-lg hover:shadow-2xl transition-shadow duration-300"
-            >
-              <img src={icons[index]} alt={e?.name} className="w-12 h-12 mb-4" />
-              <h3 className="text-lg font-semibold">{e?.name}</h3>
+            <Link to={`/category/${e?.id}/${encodeURIComponent(e?.name)}`} key={index} className="category-card">
+              <img src={icons[index]} alt={e?.name} />
+              <h3>{e?.name}</h3>
             </Link>
           ))}
         </div>
 
-        {/* Second row: remaining 4 cards */}
-        <div className="grid gap-6 grid-cols-1 sm:grid-cols-4">
+        <div className="category-grid four-cols">
           {cat?.slice(5, 9).map((e, index) => (
-            <Link
-              to={`/category/${e?.id}/${encodeURIComponent(e?.name)}`}
-              key={index + 5} // +5 because this is the second row
-              className="bg-white cursor-pointer rounded-xl p-8 flex flex-col items-center text-center shadow-lg hover:shadow-2xl transition-shadow duration-300"
-            >
-              <img src={icons[index + 5]} alt={e?.name} className="w-12 h-12 mb-4" />
-              <h3 className="text-lg font-semibold">{e?.name}</h3>
+            <Link to={`/category/${e?.id}/${encodeURIComponent(e?.name)}`} key={index + 5} className="category-card">
+              <img src={icons[index + 5]} alt={e?.name} />
+              <h3>{e?.name}</h3>
             </Link>
           ))}
         </div>
-      </div>
-    </section>
+      </section>
 
-
-      {/* Article section */}
-      <ArticlesSection
-        searchTerm={searchTerm}
-        posts={displayedPosts}
-        loading={loadingSearch}
-      />
+      {/* Article Section */}
+      <ArticlesSection searchTerm={searchTerm} posts={displayedPosts} loading={loadingSearch} />
     </div>
   );
 };

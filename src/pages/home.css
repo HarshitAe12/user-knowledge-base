@@ -1,0 +1,262 @@
+.help-center {
+  min-height: 100vh;
+ 
+}
+
+/* ---------- Hero Section ---------- */
+.hero-section-center {
+  background-color: #1a3940;
+  color: white;
+  text-align: center;
+  padding: 6rem 1.5rem;
+  padding-bottom: 10rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+@media (max-width:768px) {
+    .hero-section-center{
+         padding: 6rem 1.5rem;
+    }
+}
+.hero-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .hero-title {
+    font-size: 3rem;
+  }
+}
+
+/* ---------- Search Bar ---------- */
+.search-container {
+  width: 100%;
+  max-width: 600px;
+}
+
+.search-bar {
+  display: flex;
+  width: 100%;
+}
+
+.search-bar input {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  border: 1px solid #ccc;
+  border-right: none;
+  border-radius: 8px 0 0 8px;
+  font-size: 1rem;
+  outline: none;
+}
+
+.search-bar input:focus {
+  border-color: #1a2c40;
+  box-shadow: 0 0 0 2px rgba(26, 44, 64, 0.3);
+}
+
+.search-bar button {
+  background-color: white;
+  border: 1px solid #ccc;
+  border-left: none;
+  color: #1a2c40;
+  font-weight: 600;
+  border-radius: 0 8px 8px 0;
+  padding: 0 1.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.search-bar button:hover {
+  background-color: #f5f5f5;
+}
+
+.search-icon {
+  font-size: 1.5rem;
+}
+
+/* ---------- Category Section ---------- */
+.category-section {
+  position: relative;
+  margin-top: -5%;
+  padding: 2rem 1.5rem;
+}
+
+.category-grid {
+  display: grid;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.category-grid.five-cols {
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+}
+
+.category-grid.four-cols {
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+
+.category-card {
+  background-color: white;
+  border-radius: 12px;
+  padding: 2rem;
+  text-align: center;
+    text-decoration: none !important;
+  cursor: pointer;
+  box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+}
+
+.category-card:hover {
+  box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.25);
+  transform: translateY(-3px);
+}
+
+.category-card img {
+  width: 50px;
+  height: 50px;
+  margin-bottom: 1rem;
+}
+
+.category-card h3 {
+  
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #333;
+}
+
+
+/* category styles  */
+
+
+/* Page Layout */
+.category-page {
+  min-height: 100vh;
+  background-color: #f9fafb;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Hero Section */
+.category-hero {
+  background-color: #1a2c40;
+  color: white;
+  padding: 3rem 1.5rem;
+  text-align: center;
+}
+
+.category-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.category-name {
+  font-size: 1.25rem;
+}
+
+/* Articles Section */
+.category-articles {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem;
+}
+
+.articles-box {
+  background-color: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  padding: 2rem;
+}
+
+.articles-heading {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+/* Article List */
+.articles-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.article-link {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.article-link:hover .article-title {
+  text-decoration: underline;
+}
+
+.article-icon {
+  width: 48px;
+  height: 48px;
+  background-color: #e5e7eb;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.article-icon-inner {
+  color: #9ca3af;
+  font-size: 1.2rem;
+}
+
+.article-title {
+    margin-bottom: 4px;
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: #1a2c40;
+}
+
+.article-date {
+  font-size: 0.875rem;
+  color: #6b7280;
+  margin-top: 4px;
+}
+
+.no-articles {
+  color: #777;
+  font-size: 0.95rem;
+  margin-top: 1rem;
+  text-align: center;
+}
+
+/* ✅ Responsive */
+@media (max-width: 640px) {
+  .category-title {
+    font-size: 1.5rem;
+  }
+
+  .articles-box {
+    padding: 1.5rem;
+  }
+
+  .article-title {
+    font-size: 1rem;
+  }
+
+  .article-icon {
+    width: 42px;
+    height: 42px;
+  }
+
+  .article-icon-inner {
+    font-size: 1rem;
+  }
+}
