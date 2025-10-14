@@ -49,7 +49,10 @@ const Category = () => {
 
                   {/* Texts */}
                   <div>
-                    <p className="article-title">{article.title}</p>
+                    <p className="article-title">
+
+                        {article.title.length > 60 ? `${article.title.slice(0, 60)}...` : article.title}
+                    </p>
                     <p className="article-date">
                       Modified on{" "}
                       {new Date(article.updated_at).toLocaleDateString(

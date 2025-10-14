@@ -86,9 +86,9 @@ const ArticlePage = () => {
               <span className="highlight">{name || "this category"}</span>
             </h3>
 
-            <div className="articles-container">
+            <div className="articles-container-1">
               {getOtherPosts && getOtherPosts.length > 0 ? (
-                <div className="articles-list" >
+                <div className="articles-list-1" >
                   {getOtherPosts.map((article, idx) => (
                     <Link
                       key={idx}
@@ -101,7 +101,7 @@ const ArticlePage = () => {
                         <FaRegFileAlt className="article-icon-inner" />
                       </div>
 
-                      <div className="article-info">
+                      <div className="article-info-1">
                         <p className="article-title">{article.title}</p>
                         <p className="article-date">
                           Modified on{" "}

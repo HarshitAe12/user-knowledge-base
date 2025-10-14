@@ -34,28 +34,29 @@
 /* ---------- Search Bar ---------- */
 .search-container {
   width: 100%;
-  max-width: 600px;
+  max-width: 400px;
+  background-color: white;
+  border-radius: 10px;
+  padding: 5px;
 }
 
 .search-bar {
   display: flex;
   width: 100%;
+   border-radius: 10px;
 }
 
 .search-bar input {
   flex: 1;
   padding: 0.75rem 1rem;
-  border: 1px solid #ccc;
-  border-right: none;
-  border-radius: 8px 0 0 8px;
   font-size: 1rem;
   outline: none;
 }
 
-.search-bar input:focus {
+/* .search-bar input:focus {
   border-color: #1a2c40;
   box-shadow: 0 0 0 2px rgba(26, 44, 64, 0.3);
-}
+} */
 
 .search-bar button {
   background-color: white;
@@ -64,13 +65,9 @@
   color: #1a2c40;
   font-weight: 600;
   border-radius: 0 8px 8px 0;
-  padding: 0 1.5rem;
+
   cursor: pointer;
   transition: background-color 0.3s ease;
-}
-
-.search-bar button:hover {
-  background-color: #f5f5f5;
 }
 
 .search-icon {
@@ -157,12 +154,13 @@
 }
 
 .category-name {
-  font-size: 1.25rem;
+  font-size: 1rem;
 }
 
 /* Articles Section */
 .category-articles {
-  max-width: 800px;
+  max-width: 1200px;
+  width: 100%;
   margin: 0 auto;
   padding: 3rem 1.5rem;
 }
@@ -185,11 +183,20 @@
 
 /* Article List */
 .articles-list {
-  display: flex;
+ max-height: 100%;
+ display: grid !important;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 25px;
   flex-direction: column;
-  gap: 1.5rem;
 }
-
+@media (max-width: 768px) {
+  .articles-list {
+    grid-template-columns: 1fr;
+  }
+  .category-articles{
+    padding: 0px !important;
+  }
+}
 .article-link {
   display: flex;
   align-items: center;
@@ -260,3 +267,45 @@
     font-size: 1rem;
   }
 }
+
+
+.search-bar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.search-bar input {
+  flex: 1;
+  padding: 10px 40px 10px 12px;
+  border: none;
+  outline: none;
+  font-size: 16px;
+}
+
+.search-bar button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.search-icon {
+  font-size: 20px;
+  color: #555;
+  margin-right: 10px;
+}
+
+.clear-btn {
+  position: absolute;
+  right: 40px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.clear-icon {
+  font-size: 22px;
+  color: #999;
+}
+

@@ -3,7 +3,8 @@ import ArticlesSection from '../components/Articles';
 import { fetchCategories, fetchAllPosts, fetchPostsBySearch } from '../services/api.js';
 import React, { useEffect, useState } from 'react';
 import { IoSearchSharp } from "react-icons/io5";
-import './home.css'
+import { IoClose } from "react-icons/io5";
+import './home.css';
 import icon1 from "../assets/categoryIcons/1.png";
 import icon2 from "../assets/categoryIcons/2.png";
 import icon3 from "../assets/categoryIcons/3.png";
@@ -14,22 +15,13 @@ import icon7 from "../assets/categoryIcons/7.png";
 import icon8 from "../assets/categoryIcons/8.png";
 import icon9 from "../assets/categoryIcons/9.png";
 
-const icons = [
-  icon1,
-  icon2,
-  icon3,
-  icon4,
-  icon5,
-  icon6,
-  icon7,
-  icon8,
-  icon9,
-];
+const icons = [icon1, icon2, icon3, icon4, icon5, icon6, icon7, icon8, icon9];
+
 const Home = () => {
   const [cat, setCat] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
-  const [allPosts, setAllPosts] = useState([]); // all posts initially
-  const [displayedPosts, setDisplayedPosts] = useState([]); // posts to show in ArticlesSection
+  const [allPosts, setAllPosts] = useState([]);
+  const [displayedPosts, setDisplayedPosts] = useState([]);
   const [loadingSearch, setLoadingSearch] = useState(false);
 
   // Fetch categories
@@ -49,10 +41,9 @@ const Home = () => {
       .catch(err => console.error(err));
   }, []);
 
-  // Handle search button click
+  // Handle search
   const handleSearch = async () => {
-    if (!searchTerm) {
-      // if input is empty, show all posts
+    if (!searchTerm.trim()) {
       setDisplayedPosts(allPosts);
       return;
     }
@@ -60,7 +51,6 @@ const Home = () => {
     setLoadingSearch(true);
     try {
       const posts = await fetchPostsBySearch(searchTerm);
-      // make sure the API returns a `results` array or posts array
       setDisplayedPosts(posts?.results || posts || []);
     } catch (err) {
       console.error(err);
@@ -69,8 +59,14 @@ const Home = () => {
     }
   };
 
+  // Clear search
+  const handleClearSearch = () => {
+    setSearchTerm("");
+    setDisplayedPosts(allPosts);
+  };
+
   return (
-      <div className="help-center">
+    <div className="help-center">
       {/* Hero Section */}
       <section className="hero-section-center">
         <h1 className="hero-title">Hi, how can we help you?</h1>
@@ -85,6 +81,14 @@ const Home = () => {
               placeholder="Search..."
               onKeyDown={(e) => e.key === "Enter" && handleSearch()}
             />
+            
+            {/* Show clear button when text is entered */}
+            {searchTerm && (
+              <button className="clear-btn" onClick={handleClearSearch}>
+                <IoClose className="clear-icon" />
+              </button>
+            )}
+
             <button onClick={handleSearch}>
               <IoSearchSharp className="search-icon" />
             </button>
@@ -92,28 +96,30 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Category Cards Section */}
-      <section className="category-section">
-        <div className="category-grid five-cols">
-          {cat?.slice(0, 5).map((e, index) => (
-            <Link to={`/category/${e?.id}/${encodeURIComponent(e?.name)}`} key={index} className="category-card">
-              <img src={icons[index]} alt={e?.name} />
-              <h3>{e?.name}</h3>
-            </Link>
-          ))}
-        </div>
+      {/* Category Section — hidden during search */}
+      {!searchTerm && (
+        <section className="category-section">
+          <div className="category-grid five-cols">
+            {cat?.slice(0, 5).map((e, index) => (
+              <Link to={`/category/${e?.id}/${encodeURIComponent(e?.name)}`} key={index} className="category-card">
+                <img src={icons[index]} alt={e?.name} />
+                <h3>{e?.name}</h3>
+              </Link>
+            ))}
+          </div>
 
-        <div className="category-grid four-cols">
-          {cat?.slice(5, 9).map((e, index) => (
-            <Link to={`/category/${e?.id}/${encodeURIComponent(e?.name)}`} key={index + 5} className="category-card">
-              <img src={icons[index + 5]} alt={e?.name} />
-              <h3>{e?.name}</h3>
-            </Link>
-          ))}
-        </div>
-      </section>
+          <div className="category-grid four-cols">
+            {cat?.slice(5, 9).map((e, index) => (
+              <Link to={`/category/${e?.id}/${encodeURIComponent(e?.name)}`} key={index + 5} className="category-card">
+                <img src={icons[index + 5]} alt={e?.name} />
+                <h3>{e?.name}</h3>
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
 
-      {/* Article Section */}
+      {/* Articles Section */}
       <ArticlesSection searchTerm={searchTerm} posts={displayedPosts} loading={loadingSearch} />
     </div>
   );
