@@ -18,7 +18,7 @@ const ArticlesSection = ({ posts = [], searchTerm, loading }) => {
       ) : latestPosts.length === 0 ? (
         <p className="no-articles">No articles found.</p>
       ) : (
-        <div className="articles-list">
+        <div className="articles-list-2">
           {latestPosts.map((article, idx) => (
             <div key={idx} className="article-card">
               {/* Left: Icon + Content */}
