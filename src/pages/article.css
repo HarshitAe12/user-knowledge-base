@@ -47,7 +47,7 @@
   background: linear-gradient(to bottom right, #eef2ff, #ffffff);
   border: 1px solid #e0e7ff;
   border-radius: 16px;
-  padding: 1rem;
+  padding-top: 1rem;
   box-shadow: 3px 4px 10px rgba(0, 0, 0, 0.05);
 }
 .articles-list-1 {

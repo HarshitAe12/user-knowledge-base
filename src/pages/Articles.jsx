@@ -97,9 +97,9 @@ const ArticlePage = () => {
                         .toLowerCase()}`}
                       className="article-item"
                     >
-                      <div className="article-icon">
-                        <FaRegFileAlt className="article-icon-inner" />
-                      </div>
+                      <FaRegFileAlt className="article-icon-inner" />
+                      {/* <div className="article-icon">
+                      </div> */}
 
                       <div className="article-info-1">
                         <p className="article-title">{article.title}</p>
