@@ -28,14 +28,21 @@ const ArticlesSection = ({ posts = [], searchTerm, loading }) => {
                 </div>
 
                 <div>
-                  <h3 className="article-heading">{article.title}</h3>
+                  <h3 className="article-heading">
+                    {article.title
+                      ? article.title.length > 40
+                        ? article.title.slice(0, 40) + "..."
+                        : article.title
+                      : "Untitled Article"}
+                  </h3>
+
                   <p className="article-date">
                     {article.updated_at
                       ? `Modified on ${new Date(article.updated_at).toLocaleDateString("en-US", {
-                          year: "numeric",
-                          month: "long",
-                          day: "numeric",
-                        })}`
+                        year: "numeric",
+                        month: "long",
+                        day: "numeric",
+                      })}`
                       : "N/A"}
                   </p>
                   <Link
